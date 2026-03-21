@@ -6,7 +6,7 @@
       <img alt="Ghost logo" src="https://res.cloudinary.com/hczpmiapo/image/upload/v1731276441/Static%20assets/Logos/ghost_vgwnyq.png" width=100>
     </picture>
   </a>
-  <a href="https://railway.app/template/ZQcedl?referralCode=-Yg50p">
+  <a href="https://railway.app/deploy/ZQcedl?referralCode=-Yg50p">
     <picture>
       <source media="(prefers-color-scheme: light)" srcset="https://railway.app/brand/logo-light.svg">
       <source media="(prefers-color-scheme: dark)" srcset="https://railway.app/brand/logo-dark.svg">
@@ -17,7 +17,7 @@
 
 <h2 align="center">
   Ghost Blog Starter<br>
-  <a href="https://railway.app/template/ZQcedl?referralCode=-Yg50p">One-click deploy on Railway!</a>
+  <a href="https://railway.app/deploy/ZQcedl?referralCode=-Yg50p">One-click deploy on Railway!</a>
 </h2>
 
 <p align="center">
@@ -40,9 +40,9 @@ Updated to `version 5.112.0` 🥳
 
 ### Railway Setup (Recommended)
 
-1. Use the one-click deploy template:
+1. Use the one-click deploy ate:
 
-[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/ZQcedl?referralCode=-Yg50p)
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/deploy/ZQcedl?referralCode=-Yg50p)
 
 2. Railway will automatically configure the following environment variables:
 ```env
