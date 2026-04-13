@@ -4,7 +4,7 @@ const StorageBase = require('ghost-storage-base');
 const path = require('path');
 const debug = require('@tryghost/debug')('adapter');
 const cloudinary = require('cloudinary').v2;
-const got = require('got');
+const fetch = require('node-fetch');
 const plugins = require('./plugins');
 const { CloudinaryAdapterError } = require('./errors');
 
@@ -120,20 +120,25 @@ class CloudinaryAdapter extends StorageBase {
     });
   }
 
-  read(options) {
+  async read(options) {
     const opts = options || {};
     debug('read:opts', opts);
 
-    return got(opts.path, {
-      responseType: 'buffer',
-      resolveBodyOnly: true
-    }).catch(err => {
+    try {
+      const response = await fetch(opts.path);
+
+      if (!response.ok) {
+        throw new Error(`Unexpected response ${response.status}`);
+      }
+
+      return Buffer.from(await response.arrayBuffer());
+    } catch (err) {
       debug('read:error', err);
       throw new CloudinaryAdapterError({
         err: err,
         message: `Could not read image ${opts.path}`
       });
-    });
+    }
   }
 
   getSanitizedFileName(filename) {
@@ -143,14 +148,14 @@ class CloudinaryAdapter extends StorageBase {
   toCloudinaryFile(filename) {
     const file = path.parse(filename).base;
     if (typeof this.uploaderOptions.upload.folder !== 'undefined') {
-      return path.join(this.uploaderOptions.upload.folder, file);
+      return path.posix.join(this.uploaderOptions.upload.folder, file);
     }
     return file;
   }
 
   toCloudinaryId(filename) {
     const parsed = path.parse(this.toCloudinaryFile(filename));
-    return path.join(parsed.dir, parsed.name);
+    return path.posix.join(parsed.dir, parsed.name);
   }
 }
 
