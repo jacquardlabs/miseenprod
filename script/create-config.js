@@ -88,10 +88,11 @@ function buildConfig() {
 
   if (process.env.CLOUDINARY_URL) {
     config.storage = {
-      active: 'cloudinary',
+      active: 'LocalImagesStorage',
+      images: 'cloudinary-storage',
       media: 'LocalMediaStorage',
       files: 'LocalFilesStorage',
-      cloudinary: {
+      'cloudinary-storage': {
         useDatedFolder: false,
         upload: {
           use_filename: true,
