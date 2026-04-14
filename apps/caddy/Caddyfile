@@ -1,0 +1,5 @@
+:{$PORT} {
+	handle {
+		reverse_proxy {$GHOST_UPSTREAM}
+	}
+}
