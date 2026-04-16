@@ -1,0 +1,11 @@
+<header class="site-header">
+    <div class="container">
+        <a class="site-wordmark" href="{{@site.url}}">Mise en Prod</a>
+        <nav class="site-nav">
+            {{#foreach navigation}}
+                <a href="{{url}}">{{label}}</a>
+            {{/foreach}}
+            <a href="{{@site.url}}/rss/" title="RSS Feed">RSS</a>
+        </nav>
+    </div>
+</header>
