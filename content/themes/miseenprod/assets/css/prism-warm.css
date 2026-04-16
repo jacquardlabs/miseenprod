@@ -1,0 +1,235 @@
+/* ==========================================================================
+   Prism.js — Warm Syntax Highlighting Theme
+   Matched to the Mise en Prod warm editorial palette
+   ========================================================================== */
+
+code[class*="language-"],
+pre[class*="language-"] {
+    color: #E8E3DA;
+    background: none;
+    font-family: 'JetBrains Mono', 'Menlo', 'Consolas', monospace;
+    font-size: 0.85rem;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.6;
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+    padding: 1.25rem 1.5rem;
+    margin: 0;
+    overflow: auto;
+    border-radius: 6px;
+    background: #2A2620;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+    background: #EDE8DF;
+    color: #2A2620;
+    padding: 0.15em 0.4em;
+    border-radius: 3px;
+    white-space: normal;
+}
+
+/* ==========================================================================
+   Token Colors
+   ========================================================================== */
+
+/* Comments — muted warm gray, italic */
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+    color: #7A756C;
+    font-style: italic;
+}
+
+/* Punctuation — soft gray */
+.token.punctuation {
+    color: #A8A29A;
+}
+
+/* Namespace */
+.token.namespace {
+    opacity: 0.7;
+}
+
+/* Property, tag, boolean, number, constant, symbol, deleted — warm orange */
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+    color: #E8946A;
+}
+
+/* Selector, attr-name, string, char, builtin, inserted — warm gold/tan */
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+    color: #C4B78A;
+}
+
+/* Operator, entity, url, CSS string — medium warm amber */
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+    color: #D4A976;
+}
+
+/* Atrule, attr-value, keyword — warm rose/salmon */
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+    color: #D4837A;
+}
+
+/* Function, class-name — warm cream/gold */
+.token.function,
+.token.class-name {
+    color: #E8D4A0;
+}
+
+/* Regex, important, variable — warm sand */
+.token.regex,
+.token.important,
+.token.variable {
+    color: #D4B896;
+}
+
+/* Bold and italic */
+.token.important,
+.token.bold {
+    font-weight: bold;
+}
+
+.token.italic {
+    font-style: italic;
+}
+
+/* Entity — cursor pointer */
+.token.entity {
+    cursor: help;
+}
+
+/* ==========================================================================
+   Line Highlighting
+   ========================================================================== */
+
+pre[data-line] {
+    position: relative;
+}
+
+.line-highlight {
+    position: absolute;
+    left: 0;
+    right: 0;
+    padding: inherit 0;
+    margin-top: 1.25rem;
+    background: rgba(232, 227, 218, 0.08);
+    pointer-events: none;
+    white-space: pre;
+    line-height: inherit;
+}
+
+/* ==========================================================================
+   Line Numbers
+   ========================================================================== */
+
+pre[class*="language-"].line-numbers {
+    position: relative;
+    padding-left: 3.8em;
+    counter-reset: linenumber;
+}
+
+pre[class*="language-"].line-numbers > code {
+    position: relative;
+    white-space: inherit;
+}
+
+.line-numbers .line-numbers-rows {
+    position: absolute;
+    pointer-events: none;
+    top: 1.25rem;
+    font-size: 100%;
+    left: 0;
+    width: 3em;
+    letter-spacing: -1px;
+    border-right: 1px solid #3D3830;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.line-numbers-rows > span {
+    display: block;
+    counter-increment: linenumber;
+}
+
+.line-numbers-rows > span::before {
+    content: counter(linenumber);
+    color: #5A554D;
+    display: block;
+    padding-right: 0.8em;
+    text-align: right;
+}
+
+/* ==========================================================================
+   Toolbar (copy button, language label)
+   ========================================================================== */
+
+div.code-toolbar {
+    position: relative;
+}
+
+div.code-toolbar > .toolbar {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+div.code-toolbar:hover > .toolbar {
+    opacity: 1;
+}
+
+div.code-toolbar > .toolbar .toolbar-item {
+    display: inline-block;
+}
+
+div.code-toolbar > .toolbar button {
+    background: rgba(232, 227, 218, 0.12);
+    color: #A8A29A;
+    border: none;
+    border-radius: 3px;
+    padding: 0.25em 0.6em;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+div.code-toolbar > .toolbar button:hover {
+    background: rgba(232, 227, 218, 0.22);
+    color: #E8E3DA;
+}
