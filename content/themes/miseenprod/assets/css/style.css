@@ -27,6 +27,10 @@
     --content-width: 680px;
     --wide-width: 960px;
     --gap: 2rem;
+
+    /* Ghost custom font support */
+    --gh-font-heading: var(--font-heading);
+    --gh-font-body: var(--font-body);
 }
 
 /* ==========================================================================
