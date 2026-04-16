@@ -1,0 +1,27 @@
+{{!< default}}
+
+<main class="post-feed">
+    <div class="container">
+        {{#foreach posts}}
+            {{> post-card}}
+        {{/foreach}}
+
+        {{#if pagination.pages}}
+            {{#if (gt pagination.pages 1)}}
+                <nav class="pagination">
+                    {{#if pagination.prev}}
+                        <a href="{{pagination.prev}}">← Newer posts</a>
+                    {{else}}
+                        <span></span>
+                    {{/if}}
+                    <span class="page-number">Page {{pagination.page}} of {{pagination.pages}}</span>
+                    {{#if pagination.next}}
+                        <a href="{{pagination.next}}">Older posts →</a>
+                    {{else}}
+                        <span></span>
+                    {{/if}}
+                </nav>
+            {{/if}}
+        {{/if}}
+    </div>
+</main>
