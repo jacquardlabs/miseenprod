@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="{{@site.locale}}">
+<head>
+    <title>{{meta_title}}</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {{!-- Google Fonts — swap to prevent render blocking --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="{{asset "css/style.css"}}">
+    <link rel="stylesheet" type="text/css" href="{{asset "css/prism-warm.css"}}">
+
+    {{ghost_head}}
+</head>
+<body class="{{body_class}}">
+<div class="site-wrapper">
+
+    {{> header}}
+
+    <div class="site-content">
+        {{{body}}}
+    </div>
+
+    {{> footer}}
+
+</div>
+
+{{!-- Prism.js for syntax highlighting — loaded async, no render blocking --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" defer></script>
+
+{{ghost_foot}}
+</body>
+</html>
