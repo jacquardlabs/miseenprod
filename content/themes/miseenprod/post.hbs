@@ -21,38 +21,20 @@
             </div>
         </header>
 
-        {{#if feature_image}}
-            <figure class="article-feature-image">
-                <img
-                    srcset="{{img_url feature_image size="s"}} 300w,
-                            {{img_url feature_image size="m"}} 600w,
-                            {{img_url feature_image size="l"}} 1000w"
-                    sizes="(max-width: 680px) calc(100vw - 2.5rem), 680px"
-                    src="{{img_url feature_image size="l"}}"
-                    alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
-                >
-                {{#if feature_image_caption}}
-                    <figcaption>{{feature_image_caption}}</figcaption>
-                {{/if}}
-            </figure>
-        {{/if}}
-
         <section class="article-content">
             {{content}}
         </section>
 
         {{#if tags}}
             <div class="article-tags">
-                {{#foreach tags}}
-                    <a href="{{url}}">{{name}}</a>
-                {{/foreach}}
+                {{tags separator=", " autolink="true"}}
             </div>
         {{/if}}
 
         <nav class="post-nav">
             {{#prev_post}}
                 <div class="post-nav-item">
-                    <span class="post-nav-label">Previous</span>
+                    <span class="post-nav-label">prev</span>
                     <a class="post-nav-title" href="{{url}}">{{title}}</a>
                 </div>
             {{else}}
@@ -60,7 +42,7 @@
             {{/prev_post}}
             {{#next_post}}
                 <div class="post-nav-item">
-                    <span class="post-nav-label">Next</span>
+                    <span class="post-nav-label">next</span>
                     <a class="post-nav-title" href="{{url}}">{{title}}</a>
                 </div>
             {{else}}
