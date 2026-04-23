@@ -109,7 +109,54 @@ module.exports = class GhostMailer {
             usingDirect: transport === 'direct',
             usingMailgun: transport === 'mailgun'
         };
-        this.transport = nodemailer(transport, options);
+
+        if (transport === 'resend') {
+            const apiKey = options.apiKey;
+            this.transport = {
+                name: 'Resend',
+                version: '1.0.0',
+                send(mail, callback) {
+                    const data = mail.data;
+                    const body = JSON.stringify({
+                        from: data.from,
+                        to: [].concat(data.to),
+                        subject: data.subject,
+                        html: data.html,
+                        text: data.text || undefined
+                    });
+                    const req = require('https').request({
+                        hostname: 'api.resend.com',
+                        path: '/emails',
+                        method: 'POST',
+                        headers: {
+                            Authorization: `Bearer ${apiKey}`,
+                            'Content-Type': 'application/json',
+                            'Content-Length': Buffer.byteLength(body)
+                        }
+                    }, (res) => {
+                        let raw = '';
+                        res.on('data', chunk => { raw += chunk; });
+                        res.on('end', () => {
+                            try {
+                                const parsed = JSON.parse(raw);
+                                if (res.statusCode >= 200 && res.statusCode < 300) {
+                                    callback(null, {messageId: parsed.id});
+                                } else {
+                                    callback(new Error(parsed.message || `Resend error ${res.statusCode}`));
+                                }
+                            } catch (e) {
+                                callback(e);
+                            }
+                        });
+                    });
+                    req.on('error', callback);
+                    req.write(body);
+                    req.end();
+                }
+            };
+        } else {
+            this.transport = nodemailer(transport, options);
+        }
     }
 
     /**

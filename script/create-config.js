@@ -71,8 +71,17 @@ function buildConfig() {
   const mailgunSmtpPassword = process.env.MAILGUN_SMTP_PASSWORD;
   const mailFrom = getMailFrom({smtpUser, mailgunSmtpLogin, mailgunDomain});
 
-  if (smtpHost && smtpUser && smtpPass) {
-    // Generic SMTP — works with Resend, SendGrid, Postmark, etc.
+  if (smtpHost === 'smtp.resend.com' && smtpPass) {
+    // Resend: use HTTP API directly — GCP/Railway blocks outbound SMTP
+    config.mail = {
+      transport: 'Resend',
+      from: mailFrom,
+      options: {
+        apiKey: smtpPass
+      }
+    };
+  } else if (smtpHost && smtpUser && smtpPass) {
+    // Generic SMTP — works with SendGrid, Postmark, etc.
     const smtpPort = Number(getEnv('SMTP_PORT', '587'));
     config.mail = {
       transport: 'SMTP',
