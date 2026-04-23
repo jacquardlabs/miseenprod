@@ -154,6 +154,7 @@ function createConfig() {
   const config = buildConfig();
   fs.writeFileSync(configPath, JSON.stringify(config, null, 2));
   console.log(`Wrote ${configPath}`);
+  console.log(`Mail config: transport=${config.mail.transport} from=${config.mail.from}`);
 }
 
 createConfig();
