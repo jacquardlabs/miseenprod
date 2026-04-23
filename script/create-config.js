@@ -16,9 +16,13 @@ const getEnv = (name, fallback) => {
   return value === undefined || value === '' ? fallback : value;
 };
 
-const getMailFrom = ({mailgunSmtpLogin, mailgunDomain}) => {
+const getMailFrom = ({smtpUser, mailgunSmtpLogin, mailgunDomain}) => {
   if (process.env.MAIL_FROM) {
     return process.env.MAIL_FROM;
+  }
+
+  if (smtpUser) {
+    return smtpUser;
   }
 
   if (mailgunSmtpLogin) {
@@ -58,13 +62,31 @@ function buildConfig() {
     }
   };
 
+  const smtpHost = process.env.SMTP_HOST;
+  const smtpUser = process.env.SMTP_USER;
+  const smtpPass = process.env.SMTP_PASS;
   const mailgunApiKey = process.env.MAILGUN_API_KEY;
   const mailgunDomain = process.env.MAILGUN_DOMAIN;
   const mailgunSmtpLogin = process.env.MAILGUN_SMTP_LOGIN;
   const mailgunSmtpPassword = process.env.MAILGUN_SMTP_PASSWORD;
-  const mailFrom = getMailFrom({mailgunSmtpLogin, mailgunDomain});
+  const mailFrom = getMailFrom({smtpUser, mailgunSmtpLogin, mailgunDomain});
 
-  if (mailgunApiKey && mailgunDomain) {
+  if (smtpHost && smtpUser && smtpPass) {
+    // Generic SMTP — works with Resend, SendGrid, Postmark, etc.
+    config.mail = {
+      transport: 'SMTP',
+      from: mailFrom,
+      options: {
+        host: smtpHost,
+        port: Number(getEnv('SMTP_PORT', '465')),
+        secure: getEnv('SMTP_PORT', '465') === '465',
+        auth: {
+          user: smtpUser,
+          pass: smtpPass
+        }
+      }
+    };
+  } else if (mailgunApiKey && mailgunDomain) {
     config.mail = {
       transport: 'Mailgun',
       from: mailFrom,
