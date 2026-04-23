@@ -1,8 +1,8 @@
-/* Prism.js — VS Code dark theme for Mise en Prod */
+/* Prism.js — light theme for Mise en Prod (cool blue palette) */
 
 code[class*="language-"],
 pre[class*="language-"] {
-    color: #d4d4d4;
+    color: #081420;
     background: none;
     font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
     font-size: 0.82rem;
@@ -19,34 +19,37 @@ pre[class*="language-"] {
     padding: 1rem 1.25rem;
     overflow: auto;
     border-radius: 4px;
-    background: #1e1e1e;
+    background: #deeef8;
 }
 
 :not(pre) > code[class*="language-"] {
     padding: 0.15em 0.35em;
     border-radius: 3px;
-    background: #e8e8e8;
-    color: #1a1a1a;
+    background: rgba(255,255,255,0.85);
+    color: #0369a1;
 }
 
 .token.comment,
 .token.prolog,
 .token.doctype,
 .token.cdata {
-    color: #6a9955;
+    color: #7aa3be;
     font-style: italic;
 }
 
-.token.punctuation { color: #d4d4d4; }
+.token.punctuation { color: #4e7a96; }
 
 .token.property,
 .token.tag,
-.token.boolean,
-.token.number,
 .token.constant,
 .token.symbol,
 .token.deleted {
-    color: #b5cea8;
+    color: #0d5f87;
+}
+
+.token.boolean,
+.token.number {
+    color: #b85c00;
 }
 
 .token.selector,
@@ -55,7 +58,7 @@ pre[class*="language-"] {
 .token.char,
 .token.builtin,
 .token.inserted {
-    color: #ce9178;
+    color: #1a7a4a;
 }
 
 .token.operator,
@@ -63,24 +66,28 @@ pre[class*="language-"] {
 .token.url,
 .language-css .token.string,
 .style .token.string {
-    color: #d4d4d4;
+    color: #4e7a96;
 }
 
 .token.atrule,
 .token.attr-value,
 .token.keyword {
-    color: #569cd6;
+    color: #0369a1;
+    font-weight: 600;
 }
 
-.token.function,
+.token.function {
+    color: #0d5f87;
+}
+
 .token.class-name {
-    color: #dcdcaa;
+    color: #5b2c8c;
 }
 
 .token.regex,
 .token.important,
 .token.variable {
-    color: #d16969;
+    color: #c41e2e;
 }
 
 .token.important,
