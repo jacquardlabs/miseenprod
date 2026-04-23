@@ -9,6 +9,7 @@
     --color-accent: #0369a1;
     --color-accent-hover: #024e7a;
     --color-border: #9cc4d8;
+    --color-red: #c41e2e;
     --color-code-bg: rgba(255,255,255,0.8);
     --color-code-block-bg: #deeef8;
     --color-code-block-text: #081420;
@@ -161,9 +162,12 @@ img {
 }
 
 .post-card-tag {
-    color: var(--color-text-secondary);
+    color: var(--color-red);
+    background: rgba(196,30,46,0.07);
     text-transform: uppercase;
     letter-spacing: 0.04em;
+    padding: 1px 5px;
+    border-radius: 3px;
 }
 
 .post-card-meta-sep {
@@ -221,13 +225,13 @@ img {
     font-size: 0.72rem;
     text-transform: uppercase;
     letter-spacing: 0.04em;
-    color: var(--color-text-secondary);
+    color: var(--color-red);
     margin-bottom: 0.5rem;
     display: block;
 }
 
 .article-section-tag a {
-    color: var(--color-text-secondary);
+    color: var(--color-red);
     text-decoration: none;
 }
 
