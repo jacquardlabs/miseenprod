@@ -139,6 +139,7 @@ module.exports = class GhostMailer {
                         res.on('end', () => {
                             try {
                                 const parsed = JSON.parse(raw);
+                                logging.info(`Resend response ${res.statusCode}: ${raw}`);
                                 if (res.statusCode >= 200 && res.statusCode < 300) {
                                     callback(null, {messageId: parsed.id});
                                 } else {
