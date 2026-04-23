@@ -30,7 +30,7 @@
     "config:create": "node ./script/create-config.js",
     "dev": "nodemon index.js",
     "postinstall": "node ./script/postinstall.js",
-    "prestart": "node ./script/create-config.js",
+    "prestart": "node ./script/create-config.js && node ./script/setup-admin.js",
     "start": "node index.js",
     "build:assets": "yarn build:assets:css && yarn build:assets:js",
     "build:assets:js": "node bin/minify-assets.js",
