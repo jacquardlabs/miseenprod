@@ -57,6 +57,9 @@ function buildConfig() {
       level: getEnv('LOG_LEVEL', 'info'),
       transports: ['file', 'stdout']
     },
+    security: {
+      staffDeviceVerification: false
+    },
     paths: {
       contentPath: path.join(__dirname, '..', 'content')
     }
