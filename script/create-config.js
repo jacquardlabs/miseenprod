@@ -73,13 +73,15 @@ function buildConfig() {
 
   if (smtpHost && smtpUser && smtpPass) {
     // Generic SMTP — works with Resend, SendGrid, Postmark, etc.
+    const smtpPort = Number(getEnv('SMTP_PORT', '587'));
     config.mail = {
       transport: 'SMTP',
       from: mailFrom,
       options: {
         host: smtpHost,
-        port: Number(getEnv('SMTP_PORT', '465')),
-        secure: getEnv('SMTP_PORT', '465') === '465',
+        port: smtpPort,
+        secure: smtpPort === 465,
+        requireTLS: smtpPort !== 465,
         auth: {
           user: smtpUser,
           pass: smtpPass
