@@ -55,7 +55,7 @@ function buildConfig() {
     },
     logging: {
       level: getEnv('LOG_LEVEL', 'info'),
-      transports: ['file', 'stdout']
+      transports: ['stdout']
     },
     security: {
       staffDeviceVerification: false
