@@ -35,13 +35,18 @@ html {
 
 body {
     margin: 0;
-    padding: 0;
+    /* The dot grid's radial-gradient centers each dot mid-tile (7px into
+       each 14px tile), not at the tile corner. This top padding shifts
+       every grid-aligned measurement below onto that true phase, so
+       margins/padding/line-heights elsewhere can stay clean multiples
+       of 14px without each needing its own odd-pixel correction. */
+    padding: 7px 0 0 0;
     background-color: var(--color-bg);
     background-image: radial-gradient(circle, #c0c4cc 1px, transparent 1px);
     background-size: 14px 14px;
     color: var(--color-text);
     font-family: var(--font-body);
-    line-height: 1.6;
+    line-height: 28px;
     -webkit-font-smoothing: antialiased;
 }
 
@@ -79,7 +84,7 @@ img {
 
 /* --- Header --- */
 .site-header {
-    padding: 1.25rem 0;
+    padding: 20px 0;
     border-bottom: 2px solid var(--color-border);
 }
 
@@ -121,11 +126,11 @@ img {
 
 /* --- Post Feed --- */
 .post-feed {
-    padding: 2rem 0;
+    padding: 28px 0;
 }
 
 .post-card {
-    padding: 1.25rem 0;
+    padding: 28px 0;
     border-bottom: 2px solid var(--color-border);
 }
 
@@ -213,20 +218,21 @@ img {
 
 /* --- Article --- */
 .article {
-    padding: 2.5rem 0 3rem;
+    padding: 42px 0;
 }
 
 .article-header {
-    margin-bottom: 2rem;
+    margin-bottom: 28px;
 }
 
 .article-section-tag {
     font-family: var(--font-mono);
     font-size: 0.72rem;
+    line-height: 14px;
     text-transform: uppercase;
     letter-spacing: 0.04em;
     color: var(--color-red);
-    margin-bottom: 0.5rem;
+    margin-bottom: 14px;
     display: block;
 }
 
@@ -243,36 +249,43 @@ img {
     font-family: var(--font-heading);
     font-size: 1.7rem;
     font-weight: 700;
-    line-height: 1.25;
+    line-height: 42px;
     letter-spacing: -0.02em;
-    margin: 0 0 0.5rem 0;
+    margin: 0 0 14px 0;
 }
 
 .article-meta {
     font-family: var(--font-mono);
     font-size: 0.75rem;
+    line-height: 14px;
     color: var(--color-text-secondary);
     display: flex;
     align-items: center;
     gap: 0.5rem;
 }
 
-/* --- Article Content --- */
+/* --- Article Content ---
+   Baseline grid: every line of running text is a multiple of 14px (the
+   dot spacing), so text sits between dot rows and dividers land on them.
+   Code blocks/tables have their own solid fill or borders, so their
+   internal rhythm doesn't need to match — only their total block height
+   pushing what follows back onto the grid matters, and paragraphs are
+   what dominates a post's length. */
 .article-content {
-    line-height: 1.7;
+    line-height: 28px;
 }
 
 .article-content > * + * {
-    margin-top: 1.4rem;
+    margin-top: 28px;
 }
 
 .article-content h2 {
     font-family: var(--font-heading);
     font-size: 1.15rem;
     font-weight: 700;
-    line-height: 1.35;
+    line-height: 28px;
     letter-spacing: -0.01em;
-    margin-top: 2.5rem;
+    margin-top: 42px;
     margin-bottom: 0;
 }
 
@@ -280,8 +293,8 @@ img {
     font-family: var(--font-heading);
     font-size: 1rem;
     font-weight: 700;
-    line-height: 1.4;
-    margin-top: 2rem;
+    line-height: 28px;
+    margin-top: 28px;
     margin-bottom: 0;
 }
 
@@ -289,7 +302,7 @@ img {
     font-family: var(--font-heading);
     font-size: 0.9rem;
     font-weight: 700;
-    margin-top: 1.5rem;
+    margin-top: 14px;
     margin-bottom: 0;
 }
 
@@ -298,7 +311,7 @@ img {
 }
 
 .article-content blockquote {
-    margin: 1.5rem 0;
+    margin: 28px 0;
     padding: 0 0 0 1.25rem;
     border-left: 2px solid var(--color-border);
     color: var(--color-text-secondary);
@@ -376,17 +389,18 @@ img {
 .article-content hr {
     border: none;
     border-top: 1px solid var(--color-border);
-    margin: 2.5rem 0;
+    margin: 42px 0;
 }
 
 .article-content figure {
-    margin: 1.5rem 0;
+    margin: 28px 0;
 }
 
 .article-content figcaption {
     font-size: 0.78rem;
+    line-height: 14px;
     color: var(--color-text-secondary);
-    margin-top: 0.5rem;
+    margin-top: 14px;
 }
 
 .article-content a {
@@ -513,11 +527,12 @@ img {
 
 /* --- Article Tags (plain links) --- */
 .article-tags {
-    margin-top: 2rem;
-    padding-top: 1.5rem;
+    margin-top: 28px;
+    padding-top: 14px;
     border-top: 1px solid var(--color-border);
     font-family: var(--font-mono);
     font-size: 0.75rem;
+    line-height: 14px;
     color: var(--color-text-secondary);
 }
 
@@ -535,7 +550,7 @@ img {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
-    padding: 2rem 0;
+    padding: 28px 0;
     border-top: 1px solid var(--color-border);
 }
 
@@ -617,10 +632,11 @@ img {
 
 /* --- Footer --- */
 .site-footer {
-    padding: 1.5rem 0;
+    padding: 21px 0;
     border-top: 1px solid var(--color-border);
     text-align: center;
     font-size: 0.78rem;
+    line-height: 14px;
     color: var(--color-text-secondary);
 }
 
@@ -672,8 +688,8 @@ img {
     font-size: 1.7rem;
     font-weight: 700;
     letter-spacing: -0.02em;
-    line-height: 1.25;
-    margin: 0 0 1.5rem 0;
+    line-height: 42px;
+    margin: 0 0 28px 0;
 }
 
 /* --- Responsive --- */
