@@ -2,5 +2,8 @@
   "$schema": "https://railway.com/railway.schema.json",
   "build": {
     "builder": "RAILPACK"
+  },
+  "deploy": {
+    "startCommand": "node ./script/create-config.js && node ./script/setup-admin.js && exec node index.js"
   }
 }
