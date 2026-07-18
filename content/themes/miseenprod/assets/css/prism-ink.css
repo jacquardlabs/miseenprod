@@ -1,55 +1,58 @@
-/* Prism.js — light theme for Mise en Prod (cool blue palette) */
+/* Prism.js — "ink" theme for Mise en Prod.
+   Dark navy code block embedded in the notebook paper; token palette
+   tuned to the blue-ink/red-pen system. */
 
 code[class*="language-"],
 pre[class*="language-"] {
-    color: #081420;
+    color: #cfe3f0;
     background: none;
     font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
-    font-size: 0.82rem;
+    font-size: 0.8rem;
     text-align: left;
     white-space: pre;
     word-spacing: normal;
     word-break: normal;
-    line-height: 1.55;
+    line-height: 1.7;
     tab-size: 4;
     hyphens: none;
 }
 
 pre[class*="language-"] {
-    padding: 1rem 1.25rem;
+    padding: 16px 18px;
     overflow: auto;
-    border-radius: 4px;
-    background: #deeef8;
+    border-radius: 5px;
+    background: #08202f;
 }
 
+/* Inline language-tagged code (rare); plain inline <code> is styled in style.css */
 :not(pre) > code[class*="language-"] {
     padding: 0.15em 0.35em;
     border-radius: 3px;
-    background: rgba(255,255,255,0.85);
-    color: #0369a1;
+    background: rgba(255, 255, 255, 0.8);
+    color: #0a5c93;
 }
 
 .token.comment,
 .token.prolog,
 .token.doctype,
 .token.cdata {
-    color: #7aa3be;
+    color: #6b869a;
     font-style: italic;
 }
 
-.token.punctuation { color: #4e7a96; }
+.token.punctuation { color: #8aa0b4; }
 
 .token.property,
 .token.tag,
 .token.constant,
 .token.symbol,
 .token.deleted {
-    color: #0d5f87;
+    color: #a5c8e6;
 }
 
 .token.boolean,
 .token.number {
-    color: #b85c00;
+    color: #e6c27f;
 }
 
 .token.selector,
@@ -58,7 +61,7 @@ pre[class*="language-"] {
 .token.char,
 .token.builtin,
 .token.inserted {
-    color: #1a7a4a;
+    color: #7fd39a;
 }
 
 .token.operator,
@@ -66,28 +69,28 @@ pre[class*="language-"] {
 .token.url,
 .language-css .token.string,
 .style .token.string {
-    color: #4e7a96;
+    color: #8aa0b4;
 }
 
 .token.atrule,
 .token.attr-value,
 .token.keyword {
-    color: #0369a1;
+    color: #6fb2e6;
     font-weight: 600;
 }
 
 .token.function {
-    color: #0d5f87;
+    color: #e6c27f;
 }
 
 .token.class-name {
-    color: #5b2c8c;
+    color: #a5c8e6;
 }
 
 .token.regex,
 .token.important,
 .token.variable {
-    color: #c41e2e;
+    color: #f0929b;
 }
 
 .token.important,

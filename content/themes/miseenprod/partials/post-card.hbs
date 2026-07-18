@@ -1,17 +1,33 @@
-<article class="post-card">
-    <a class="post-card-link" href="{{url}}">
-        <div class="post-card-meta">
-            <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="YYYY-MM-DD"}}</time>
-            {{#primary_tag}}
-                <span class="post-card-meta-sep">/</span>
-                <span class="post-card-tag">{{name}}</span>
-            {{/primary_tag}}
-        </div>
-        <h2 class="post-card-title">{{title}}</h2>
-        {{#if custom_excerpt}}
-            <p class="post-card-excerpt">{{custom_excerpt}}</p>
-        {{else if excerpt}}
-            <p class="post-card-excerpt">{{excerpt words="20"}}</p>
+<a class="entry" href="{{url}}">
+    <div class="gutter">p.{{pageno}}</div>
+    <div class="row">
+        {{#if featured}}
+            <span class="bullet b-signal" title="signal">&#9733;</span>
+        {{else}}
+            {{#has tag="hash-thread"}}
+                <span class="bullet b-thread" title="threaded">&rarr;</span>
+            {{else}}
+                <span class="bullet b-note" title="note">&bull;</span>
+            {{/has}}
         {{/if}}
-    </a>
-</article>
+
+        <div class="headline">
+            <div class="t">{{title}}</div>
+            {{#if custom_excerpt}}
+                <div class="d">{{custom_excerpt}}</div>
+            {{else if excerpt}}
+                <div class="d">{{excerpt words="18"}}</div>
+            {{/if}}
+            {{#has tag="hash-thread"}}
+                {{#primary_tag}}
+                    <div class="thread-sub"><span class="arrow">&rarr;</span> {{name}} thread</div>
+                {{/primary_tag}}
+            {{/has}}
+        </div>
+
+        <div class="side">
+            {{#primary_tag}}<span class="tag">{{name}}</span>{{/primary_tag}}
+            <span class="date">{{date format="MM[·]DD"}}</span>
+        </div>
+    </div>
+</a>
