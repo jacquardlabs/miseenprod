@@ -18,8 +18,7 @@
     --font-heading: 'JetBrains Mono', 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', monospace;
     --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', monospace;
 
-    --content-width: 760px;
-    --wide-width: 1000px;
+    --content-width: 840px;
     --gap: 2rem;
 
     --gh-font-heading: var(--font-heading);
@@ -317,23 +316,6 @@ img {
     border-radius: 3px;
 }
 
-/* Breakout: let code blocks and tables run wider than the prose column on
-   large screens, capped at --wide-width, without a media query. Formula
-   centers the wider box on the viewport regardless of --content-width or
-   --gap, and collapses back to zero shift once the viewport can no longer
-   fit anything wider than the normal column. */
-.article-content pre,
-.article-content .gh-table {
-    --breakout-w: min(var(--wide-width), 100vw - 2 * var(--gap));
-    width: var(--breakout-w);
-    max-width: var(--breakout-w);
-    margin-left: calc(
-        (100vw - var(--breakout-w)) / 2
-        - max(0px, (100vw - var(--content-width)) / 2)
-        - var(--gap)
-    );
-}
-
 .article-content pre {
     background: var(--color-code-block-bg);
     color: var(--color-code-block-text);
@@ -353,9 +335,7 @@ img {
 }
 
 /* Ghost wraps every table in a <div class="gh-table"> for horizontal
-   scroll on narrow screens, but core ships no styling for it at all —
-   the table itself defaults to content-width, so widening .gh-table above
-   leaves dead space unless the table is told to fill it. */
+   scroll on narrow screens, but core ships no styling for it at all. */
 .article-content .gh-table {
     overflow-x: auto;
 }
@@ -492,25 +472,9 @@ img {
     object-fit: cover;
 }
 
-.kg-width-wide {
-    --breakout-w: min(var(--wide-width), 100vw - 2 * var(--gap));
-    width: var(--breakout-w);
-    max-width: var(--breakout-w);
-    margin-left: calc(
-        (100vw - var(--breakout-w)) / 2
-        - max(0px, (100vw - var(--content-width)) / 2)
-        - var(--gap)
-    );
-}
-
+.kg-width-wide,
 .kg-width-full {
-    --breakout-w: 100vw;
-    width: var(--breakout-w);
-    max-width: var(--breakout-w);
-    margin-left: calc(
-        -1 * max(0px, (100vw - var(--content-width)) / 2)
-        - var(--gap)
-    );
+    /* no breakout in this minimal theme */
 }
 
 .kg-embed-card { margin: 1.5rem 0; }
