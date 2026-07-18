@@ -352,6 +352,47 @@ img {
     color: inherit;
 }
 
+/* Ghost wraps every table in a <div class="gh-table"> for horizontal
+   scroll on narrow screens, but core ships no styling for it at all —
+   the table itself defaults to content-width, so widening .gh-table above
+   leaves dead space unless the table is told to fill it. */
+.article-content .gh-table {
+    overflow-x: auto;
+}
+
+.article-content .gh-table table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+}
+
+.article-content .gh-table th,
+.article-content .gh-table td {
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid var(--color-border);
+    white-space: nowrap;
+}
+
+.article-content .gh-table th:first-child,
+.article-content .gh-table td:first-child {
+    padding-left: 0;
+}
+
+.article-content .gh-table th:last-child,
+.article-content .gh-table td:last-child {
+    padding-right: 0;
+}
+
+.article-content .gh-table th {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--color-text-secondary);
+    border-bottom: 2px solid var(--color-border);
+}
+
 .article-content hr {
     border: none;
     border-top: 1px solid var(--color-border);
