@@ -1,0 +1,28 @@
+<section class="signal">
+    <div class="signal-top">
+        <span class="signal-flag">
+            {{#if featured}}
+                <span class="glyph">&#9733;</span> Signal &middot; newest entry
+            {{else}}
+                <span class="glyph">&bull;</span> Newest entry
+            {{/if}}
+        </span>
+        <span class="pageref">p.{{pageno}}</span>
+    </div>
+
+    <h2 class="signal-title"><a href="{{url}}">{{title}}</a></h2>
+
+    {{#if custom_excerpt}}
+        <p class="note">{{custom_excerpt}}</p>
+    {{else if excerpt}}
+        <p class="note">{{excerpt words="30"}}</p>
+    {{/if}}
+
+    <div class="meta">
+        {{#primary_tag}}<span class="tag">{{name}}</span><span>&middot;</span>{{/primary_tag}}
+        {{#if reading_time}}<span>{{reading_time minute="1 min read" minutes="% min read"}}</span><span>&middot;</span>{{/if}}
+        <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="YYYY-MM-DD"}}</time>
+    </div>
+
+    <a class="go" href="{{url}}">Read the entry &rarr;</a>
+</section>

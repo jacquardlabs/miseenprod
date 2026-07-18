@@ -1,25 +1,71 @@
 {{!< default}}
 
-<main class="post-feed">
+<main>
     <div class="container">
-        {{#foreach posts}}
-            {{> post-card}}
-        {{/foreach}}
+
+        {{#unless pagination.prev}}
+            {{!-- Page 1 only: the bullet key + the newest entry as Signal --}}
+            <div class="key">
+                <span class="k-title">Key</span>
+                <span class="k-item"><span class="glyph g-signal">&#9733;</span> signal</span>
+                <span class="k-item"><span class="glyph g-note">&bull;</span> note</span>
+                <span class="k-item"><span class="glyph g-thread">&rarr;</span> threaded</span>
+                <span class="k-item"><span class="glyph g-coll">&#9671;</span> collection</span>
+            </div>
+
+            {{#foreach posts}}
+                {{#if @first}}{{> signal pageno=@number}}{{/if}}
+            {{/foreach}}
+        {{/unless}}
+
+        <section class="index">
+            <div class="index-title">
+                <span class="lbl">Index</span>
+                <span class="count">{{plural pagination.total empty="No entries yet" singular="1 entry" plural="% entries"}}</span>
+            </div>
+
+            {{#foreach posts}}
+                {{#if @first}}
+                    {{!-- page 1: newest already shown as Signal; on later pages, list it --}}
+                    {{#if ../pagination.prev}}{{> post-card pageno=@number}}{{/if}}
+                {{else}}
+                    {{> post-card pageno=@number}}
+                {{/if}}
+            {{/foreach}}
+        </section>
+
+        {{!-- In the margins — quick logs tagged #margin. Invisible until used. --}}
+        {{#unless pagination.prev}}
+            {{#get "posts" filter="tag:hash-margin" limit="4" as |margins|}}
+                {{#if margins}}
+                    <section class="margins">
+                        <div class="m-head">
+                            <span class="lbl">In the margins</span>
+                            <span class="sub">quick logs — not everything becomes an essay</span>
+                        </div>
+                        <div class="jots">
+                            {{#foreach margins}}
+                                <a class="jot" href="{{url}}">
+                                    <span class="bullet">&bull;</span>
+                                    <span class="jt">{{title}}</span>
+                                </a>
+                            {{/foreach}}
+                        </div>
+                    </section>
+                {{/if}}
+            {{/get}}
+        {{/unless}}
 
         {{#if pagination.next}}
             <nav class="pagination">
-                {{#if pagination.prev}}
-                    <a href="{{pagination.prev}}">← Newer posts</a>
-                {{else}}
-                    <span></span>
-                {{/if}}
-                <span class="page-number">Page {{pagination.page}} of {{pagination.pages}}</span>
-                <a href="{{pagination.next}}">Older posts →</a>
+                {{#if pagination.prev}}<a href="{{pagination.prev}}">&larr; Newer</a>{{else}}<span></span>{{/if}}
+                <span class="page-number">p. {{pagination.page}} / {{pagination.pages}}</span>
+                <a href="{{pagination.next}}">Older &rarr;</a>
             </nav>
         {{else if pagination.prev}}
             <nav class="pagination">
-                <a href="{{pagination.prev}}">← Newer posts</a>
-                <span class="page-number">Page {{pagination.page}} of {{pagination.pages}}</span>
+                <a href="{{pagination.prev}}">&larr; Newer</a>
+                <span class="page-number">p. {{pagination.page}} / {{pagination.pages}}</span>
                 <span></span>
             </nav>
         {{/if}}

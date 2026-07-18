@@ -4,11 +4,14 @@
 <main class="article">
     <div class="container">
         <header class="article-header">
-            {{#primary_tag}}
-                <div class="article-section-tag">
-                    <a href="{{url}}">{{name}}</a>
-                </div>
-            {{/primary_tag}}
+            <div class="article-flag">
+                {{#if featured}}
+                    <span class="glyph g-signal">&#9733;</span>
+                {{else}}
+                    <span class="glyph g-note">&bull;</span>
+                {{/if}}
+                {{#primary_tag}}<a href="{{url}}">{{name}}</a>{{else}}Entry{{/primary_tag}}
+            </div>
 
             <h1 class="article-title">{{title}}</h1>
 
@@ -31,22 +34,23 @@
             </div>
         {{/if}}
 
+        {{!-- Threading: previous/next entries connect the log --}}
         <nav class="post-nav">
             {{#prev_post}}
-                <div class="post-nav-item">
-                    <span class="post-nav-label">prev</span>
+                <div class="post-nav-item prev">
+                    <span class="post-nav-label">&larr; previous entry</span>
                     <a class="post-nav-title" href="{{url}}">{{title}}</a>
                 </div>
             {{else}}
-                <div class="post-nav-item"></div>
+                <div class="post-nav-item prev"></div>
             {{/prev_post}}
             {{#next_post}}
-                <div class="post-nav-item">
-                    <span class="post-nav-label">next</span>
+                <div class="post-nav-item next">
+                    <span class="post-nav-label">next entry &rarr;</span>
                     <a class="post-nav-title" href="{{url}}">{{title}}</a>
                 </div>
             {{else}}
-                <div class="post-nav-item"></div>
+                <div class="post-nav-item next"></div>
             {{/next_post}}
         </nav>
     </div>

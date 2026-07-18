@@ -9,33 +9,29 @@
                     <p class="tag-header-description">{{description}}</p>
                 {{/if}}
                 <p class="tag-header-count">
-                    {{plural ../pagination.total empty="No posts" singular="1 post" plural="% posts"}}
+                    {{plural ../pagination.total empty="No entries" singular="1 entry" plural="% entries"}}
                 </p>
             </header>
         {{/tag}}
 
-        <div class="post-feed">
+        <section class="index">
             {{#foreach posts}}
-                {{> post-card}}
+                {{> post-card pageno=@number}}
             {{/foreach}}
+        </section>
 
-            {{#if pagination.next}}
-                <nav class="pagination">
-                    {{#if pagination.prev}}
-                        <a href="{{pagination.prev}}">← Newer posts</a>
-                    {{else}}
-                        <span></span>
-                    {{/if}}
-                    <span class="page-number">Page {{pagination.page}} of {{pagination.pages}}</span>
-                    <a href="{{pagination.next}}">Older posts →</a>
-                </nav>
-            {{else if pagination.prev}}
-                <nav class="pagination">
-                    <a href="{{pagination.prev}}">← Newer posts</a>
-                    <span class="page-number">Page {{pagination.page}} of {{pagination.pages}}</span>
-                    <span></span>
-                </nav>
-            {{/if}}
-        </div>
+        {{#if pagination.next}}
+            <nav class="pagination">
+                {{#if pagination.prev}}<a href="{{pagination.prev}}">&larr; Newer</a>{{else}}<span></span>{{/if}}
+                <span class="page-number">p. {{pagination.page}} / {{pagination.pages}}</span>
+                <a href="{{pagination.next}}">Older &rarr;</a>
+            </nav>
+        {{else if pagination.prev}}
+            <nav class="pagination">
+                <a href="{{pagination.prev}}">&larr; Newer</a>
+                <span class="page-number">p. {{pagination.page}} / {{pagination.pages}}</span>
+                <span></span>
+            </nav>
+        {{/if}}
     </div>
 </main>

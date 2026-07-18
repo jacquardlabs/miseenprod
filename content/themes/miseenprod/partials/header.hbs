@@ -1,6 +1,9 @@
 <header class="site-header">
     <div class="container">
-        <a class="site-wordmark" href="{{@site.url}}">Mise en Prod</a>
+        <div class="site-brand">
+            <a class="site-wordmark" href="{{@site.url}}">Mise en Prod</a>
+            <span class="site-vol">Vol. 001 &middot; {{date format="YYYY"}}</span>
+        </div>
         <nav class="site-nav">
             {{#foreach navigation}}
                 <a href="{{url}}">{{label}}</a>
