@@ -62,16 +62,12 @@ NODE_ENV="production"
 CLOUDINARY_URL="" # Example: cloudinary://<api_key>:<api_secret>@<cloud_name>
 CLOUDINARY_FOLDER="ghost-blog-images"
 
-# Mail Configuration
-MAIL_FROM="" # Optional. Falls back to MAILGUN_SMTP_LOGIN or noreply@MAILGUN_DOMAIN
-MAILGUN_API_KEY=""
-MAILGUN_DOMAIN=""
-
-# SMTP fallback
-MAILGUN_SMTP_LOGIN=""
-MAILGUN_SMTP_PASSWORD=""
-MAILGUN_SMTP_HOST=""
-MAILGUN_SMTP_PORT=""
+# Mail Configuration (Resend when SMTP_HOST=smtp.resend.com; SMTP_PASS is the API key)
+SMTP_HOST=""
+SMTP_USER=""
+SMTP_PASS=""
+SMTP_PORT="" # Generic SMTP only; defaults to 587
+MAIL_FROM="" # Optional. Falls back to SMTP_USER
 ```
 
 4. Recommended Railway start command:

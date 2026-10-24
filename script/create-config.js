@@ -16,25 +16,7 @@ const getEnv = (name, fallback) => {
   return value === undefined || value === '' ? fallback : value;
 };
 
-const getMailFrom = ({smtpUser, mailgunSmtpLogin, mailgunDomain}) => {
-  if (process.env.MAIL_FROM) {
-    return process.env.MAIL_FROM;
-  }
-
-  if (smtpUser) {
-    return smtpUser;
-  }
-
-  if (mailgunSmtpLogin) {
-    return mailgunSmtpLogin;
-  }
-
-  if (mailgunDomain) {
-    return `noreply@${mailgunDomain}`;
-  }
-
-  return undefined;
-};
+const getMailFrom = ({smtpUser}) => process.env.MAIL_FROM || smtpUser || undefined;
 
 function buildConfig() {
   const config = {
@@ -68,11 +50,7 @@ function buildConfig() {
   const smtpHost = process.env.SMTP_HOST;
   const smtpUser = process.env.SMTP_USER;
   const smtpPass = process.env.SMTP_PASS;
-  const mailgunApiKey = process.env.MAILGUN_API_KEY;
-  const mailgunDomain = process.env.MAILGUN_DOMAIN;
-  const mailgunSmtpLogin = process.env.MAILGUN_SMTP_LOGIN;
-  const mailgunSmtpPassword = process.env.MAILGUN_SMTP_PASSWORD;
-  const mailFrom = getMailFrom({smtpUser, mailgunSmtpLogin, mailgunDomain});
+  const mailFrom = getMailFrom({smtpUser});
 
   if (smtpHost === 'smtp.resend.com' && smtpPass) {
     // Resend: use HTTP API directly — GCP/Railway blocks outbound SMTP
@@ -97,35 +75,6 @@ function buildConfig() {
         auth: {
           user: smtpUser,
           pass: smtpPass
-        }
-      }
-    };
-  } else if (mailgunApiKey && mailgunDomain) {
-    config.mail = {
-      transport: 'Mailgun',
-      from: mailFrom,
-      options: {
-        auth: {
-          api_key: mailgunApiKey,
-          domain: mailgunDomain
-        }
-      }
-    };
-  } else if (mailgunSmtpLogin && mailgunSmtpPassword) {
-    config.mail = {
-      transport: 'SMTP',
-      from: mailFrom,
-      options: {
-        host: getEnv('MAILGUN_SMTP_HOST', 'smtp.mailgun.org'),
-        port: Number(getEnv('MAILGUN_SMTP_PORT', '2525')),
-        secure: false,
-        requireTLS: true,
-        auth: {
-          user: mailgunSmtpLogin,
-          pass: mailgunSmtpPassword
-        },
-        tls: {
-          rejectUnauthorized: true
         }
       }
     };
